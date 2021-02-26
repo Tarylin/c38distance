@@ -16,4 +16,21 @@ class Player {
     database.ref('/').update({
       playerCount: count
     });
-  }}
+}
+
+update(){
+var playerIndex = "players/player"+this.index;
+database.ref(playerIndex).set({
+ name:this.name,
+ distance:this.distance 
+})  
+}
+
+
+static getPlayerInfo(){
+ var getPlayerInfoRef = database.ref("players")
+ getPlayerInfoRef.on("value",(data)=>{
+  allPlayers = data.val();  
+ })
+}
+}
